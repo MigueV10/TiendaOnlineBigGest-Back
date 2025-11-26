@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Administrador - Skypers</title>
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body>
+  <header>
+    <h1>Skypers | Panel de Administración</h1>
+    <button class="logout-btn" onclick="logout()">Cerrar sesión</button>
+  </header>
+
+  <nav class="sidebar">
+    <ul>
+      <li onclick="loadModule('productos')">🛒 Productos</li>
+      <li onclick="loadModule('clientes')">👥 Clientes</li>
+      <li onclick="loadModule('categorias')">📦 Categorías</li>
+      <li onclick="loadModule('ventas')">💰 Ventas</li>
+    </ul>
+  </nav>
+
+  <main class="content-area">
+    <section id="adminContent">
+      <h2>Bienvenido Administrador</h2>
+      <p>Selecciona una sección del menú para comenzar a gestionar el sistema.</p>
+    </section>
+  </main>
+
+  <!-- ✅ Importar como módulo -->
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Bienvenido - Cliente Skypers</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="cliente-page">
+  <nav>
+    <h2>Skypers - Mi Panel</h2>
+    <button onclick="logout()">Cerrar sesión</button>
+  </nav>
+  <main class="cliente-container">
+    <section id="datosPersonales" class="cliente-card">
+      <h3>Mis Datos</h3>
+      <p><strong>Nombre:</strong> <span id="clienteNombre"></span></p>
+      <p><strong>Email:</strong> <span id="clienteEmail"></span></p>
+      <p><strong>Membresía vence:</strong> <span id="clienteMembresia"></span></p>
+    </section>
+
+    <section id="credencialDigital" class="cliente-card">
+      <h3>Credencial Digital</h3>
+      <div class="credencial">
+        <img id="clienteFoto" src="" alt="Foto cliente">
+        <div>
+          <p><strong>ID:</strong> <span id="clienteId"></span></p>
+          <p><strong>Nombre:</strong> <span id="clienteNombre2"></span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/cliente.js"></script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "b5cd8dea-0867-4e7a-bad7-c4e95a789aa8",
+		"name": "Venta",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40991915"
+	},
+	"item": [
+		{
+			"name": "Listar VENTAS",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/venta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"venta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar venta por su ID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/venta/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"venta",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Venta",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cliente\" : {\r\n        \"clienteId\" : 3\r\n    },\r\n    \"lineas\" : [\r\n        {\r\n        \"cantidad\" : 1,\r\n        \"producto\" : {\r\n                \"productoId\" : 4\r\n            }\r\n        },\r\n        {\r\n        \"cantidad\": 2,\r\n        \"producto\": {\r\n        \"productoId\": 4\r\n        }   \r\n      }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/venta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"venta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar Venta Por su ID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/venta/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"venta",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
