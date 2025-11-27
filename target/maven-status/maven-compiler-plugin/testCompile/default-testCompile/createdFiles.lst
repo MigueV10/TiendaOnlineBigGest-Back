@@ -1,2 +1,3 @@
 com\coderhouse\CrudProyectoApplicationTests.class
+com\coderhouse\services\AuthServiceTest.class
 com\coderhouse\services\CategoriaServicesTest.class

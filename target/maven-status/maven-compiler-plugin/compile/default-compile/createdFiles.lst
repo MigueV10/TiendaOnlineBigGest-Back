@@ -12,7 +12,8 @@ com\coderhouse\models\DetalleVenta.class
 com\coderhouse\error\VentaException.class
 com\coderhouse\config\StaticResourceConfig.class
 com\coderhouse\CrudProyectoApplication.class
-com\coderhouse\CrudProyectoApplication$1.class
+com\coderhouse\services\UserService.class
+com\coderhouse\dtos\UserRequest.class
 com\coderhouse\controllers\UploadController$Base64Body.class
 com\coderhouse\dtos\VentaResponseDTO$CategoriaResponse.class
 com\coderhouse\dtos\VentaRequestDTO.class
@@ -20,9 +21,9 @@ com\coderhouse\dtos\VentaAgregarProductosDTO.class
 com\coderhouse\error\AgregarCategoriaException.class
 com\coderhouse\dtos\ProductoResponse.class
 com\coderhouse\error\CompraException.class
-CorsConfig.class
 com\coderhouse\controllers\ClienteController.class
 com\coderhouse\services\VentaServices.class
+com\coderhouse\dtos\UserResponse.class
 com\coderhouse\models\Venta.class
 com\coderhouse\dtos\TimeAPIResponseDTO.class
 com\coderhouse\repositories\ProductoRepository.class
@@ -33,13 +34,14 @@ com\coderhouse\dtos\VentaResponseDTO$ProductoResponse.class
 com\coderhouse\models\Cliente.class
 com\coderhouse\dtos\VentaResponseDTO$DetalleVentaResponse.class
 com\coderhouse\controllers\UploadController.class
+com\coderhouse\controllers\UserController.class
 com\coderhouse\services\CategoriaServices.class
 com\coderhouse\models\ProductoVenta.class
 com\coderhouse\dtos\VentaRequestDTO$ProductoRequest.class
 com\coderhouse\dtos\VentaRequestDTO$Linea.class
 com\coderhouse\controllers\ProductoController.class
 com\coderhouse\dtos\ProductoRequest.class
-CorsConfig$1.class
+com\coderhouse\dtos\UserResponse$UserResponseBuilder.class
 com\coderhouse\repositories\ClienteRepository.class
 com\coderhouse\config\configS.class
 com\coderhouse\repositories\CategoriaRepository.class

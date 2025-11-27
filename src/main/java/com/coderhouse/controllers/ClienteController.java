@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponse;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/api/clientes") 
 @Tag(name = "Cliente", description  = "Gestion O Manejo de Clientes")
+@PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
 public class ClienteController { 
 
 	

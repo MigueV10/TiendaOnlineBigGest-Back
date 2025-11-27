@@ -14,6 +14,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,6 +48,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/api/productos")
 @Tag(name = "Productos", description = "Manejador De Productos")
+@PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO','CLIENTE')")
 public class ProductoController {
 
     @Autowired
@@ -96,6 +98,7 @@ public class ProductoController {
         @ApiResponse(responseCode = "400", description = "Petición inválida", content = @Content)
     })
     @PostMapping
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
     public ResponseEntity<ProductoResponse> create(@RequestBody ProductoRequest dto) {
         try {
             Producto p = productoService.createFromDto(dto); // copia imageUrl/imagenUrl dentro
@@ -114,6 +117,7 @@ public class ProductoController {
         @ApiResponse(responseCode = "404", description = "Producto no encontrado", content = @Content)
     })
     @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
     public ResponseEntity<Producto> updateProducto(@PathVariable Long id, @RequestBody ProductoRequest productoRequest) {
         try {
             Producto updateProducto = productoService.updateProducto(id, productoRequest);
@@ -131,6 +135,7 @@ public class ProductoController {
         @ApiResponse(responseCode = "204", description = "Producto eliminado correctamente")
     })
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
     public ResponseEntity<Void> deleteProductoById(@PathVariable Long id) {
         try {
             productoService.deleteProductoById(id);
@@ -148,6 +153,7 @@ public class ProductoController {
         @ApiResponse(responseCode = "200", description = "Categoría asignada correctamente")
     })
     @PostMapping("/asignar-categoria")
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
     public ResponseEntity<Producto> addCategoryToProduct(@RequestBody VentaAgregarProductosDTO dto) {
         try {
             Producto upd = productoService.addCategoryToProduct(dto.getProductoId(), dto.getCategoriaId());
@@ -163,6 +169,7 @@ public class ProductoController {
     private static final Path UPLOAD_DIR = Paths.get("uploads");
 
     @PostMapping("/upload")
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
     public Map<String, String> upload(@RequestParam("file") MultipartFile file) throws Exception {
         if (!Files.exists(UPLOAD_DIR)) Files.createDirectories(UPLOAD_DIR);
 
@@ -182,6 +189,7 @@ public class ProductoController {
     public static class Base64Body { public String dataUrl; }
 
     @PostMapping("/upload/base64")
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
     public Map<String, String> uploadBase64(@RequestBody Base64Body body) throws Exception {
         if (!Files.exists(UPLOAD_DIR)) Files.createDirectories(UPLOAD_DIR);
 

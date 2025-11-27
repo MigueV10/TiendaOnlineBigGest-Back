@@ -3,6 +3,7 @@ package com.coderhouse.controllers;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.nio.file.*;
 import java.time.Instant;
@@ -10,6 +11,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api")
+@PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
 public class UploadController {
 
     private static final Path UPLOAD_DIR = Paths.get("uploads");

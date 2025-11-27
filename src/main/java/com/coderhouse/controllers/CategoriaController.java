@@ -7,6 +7,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.ErrorResponse;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/api/categoria")
 @Tag(name = "Categoria", description  = "Categoria Manejador Sistematica")
+@PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO','CLIENTE')")
 public class CategoriaController {
 	 @Autowired
 	    private CategoriaServices categoriaService;
@@ -84,9 +86,10 @@ public class CategoriaController {
 	    		@ApiResponse(responseCode = "500", description = "Error interno del servidor",
 				content = @Content (mediaType = "aplication/json",
 	    				schema = @Schema(implementation = ErrorResponse.class)))
-	    })
-	    @PostMapping
-	    public ResponseEntity<Categoria> createCategoria(@RequestBody Categoria categoria) {
+    })
+    @PostMapping
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
+    public ResponseEntity<Categoria> createCategoria(@RequestBody Categoria categoria) {
 	        try {
 	            Categoria createdCategoria = categoriaService.createCategoria(categoria);
 	            return ResponseEntity.status(HttpStatus.CREATED).body(createdCategoria);
@@ -108,9 +111,10 @@ public class CategoriaController {
 	    		@ApiResponse(responseCode = "500", description = "Error interno del servidor",
 				content = @Content (mediaType = "aplication/json",
 	    				schema = @Schema(implementation = ErrorResponse.class)))
-	    })
-	    @PutMapping("/{id}")
-	    public ResponseEntity<Categoria> updateCategoria(@PathVariable Long id, @RequestBody Categoria categoriaDetails) {
+    })
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
+    public ResponseEntity<Categoria> updateCategoria(@PathVariable Long id, @RequestBody Categoria categoriaDetails) {
 	        try {
 	            Categoria updateCategoria = categoriaService.updateCategoria(id, categoriaDetails);
 	            return ResponseEntity.status(HttpStatus.CREATED).body(updateCategoria);
@@ -133,9 +137,10 @@ public class CategoriaController {
 	    		@ApiResponse(responseCode = "500", description = "Error interno del servidor",
 				content = @Content (mediaType = "aplication/json",
 	    				schema = @Schema(implementation = ErrorResponse.class)))
-	    })
-	    @DeleteMapping("/{id}")
-	    public ResponseEntity<?> deleteCategoriaById(@PathVariable Long id) {
+    })
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
+    public ResponseEntity<?> deleteCategoriaById(@PathVariable Long id) {
 	        try {
 	        	categoriaService.deleteCategoriaById(id);
 	        	return ResponseEntity.ok("Categoria eliminada correctamente...!");
