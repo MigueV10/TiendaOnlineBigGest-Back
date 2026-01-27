@@ -31,7 +31,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/api/categoria")
 @Tag(name = "Categoria", description  = "Categoria Manejador Sistematica")
-@PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO','CLIENTE')")
 public class CategoriaController {
 	 @Autowired
 	    private CategoriaServices categoriaService;

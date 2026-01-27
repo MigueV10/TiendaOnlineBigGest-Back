@@ -48,7 +48,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/api/productos")
 @Tag(name = "Productos", description = "Manejador De Productos")
-@PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO','CLIENTE')")
 public class ProductoController {
 
     @Autowired

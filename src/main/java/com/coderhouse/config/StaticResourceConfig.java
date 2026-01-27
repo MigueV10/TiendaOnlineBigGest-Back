@@ -10,7 +10,8 @@ public class StaticResourceConfig implements WebMvcConfigurer {
   @Override
   public void addResourceHandlers(ResourceHandlerRegistry registry) {
     registry.addResourceHandler("/uploads/**")
-            .addResourceLocations("file:/var/app/current/uploads/")
+            // Servir archivos subidos desde el directorio local "uploads" (independiente del hosting)
+            .addResourceLocations("file:uploads/")
             .setCachePeriod(3600);
   }
 }

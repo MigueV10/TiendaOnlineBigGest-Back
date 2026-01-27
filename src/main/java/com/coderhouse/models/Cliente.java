@@ -39,8 +39,10 @@ public class Cliente {
     @Column(name="Nombre")
     @Schema(description = "Nombre del cliente", requiredMode= Schema.RequiredMode.REQUIRED, example = "Miguel Eduardo")
     private String nombre;
+    @Column(name="Apellido")
     @Schema(description = "Apellido del cliente", requiredMode= Schema.RequiredMode.REQUIRED, example = "Urena Nieto")
     private String apellido;
+    @Column(name="Email")
     @Schema(description = "Email del cliente", requiredMode= Schema.RequiredMode.REQUIRED, example = "miguel109@gmail.com")
     private String email;
     @Column(unique = true, nullable = false)
