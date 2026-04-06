@@ -26,7 +26,12 @@ public class JwtService {
     private long expirationMs;
 
     public String generateToken(User user) {
-        return buildToken(Map.of("role", user.getRole().name()), user.getUsername());
+        var claims = new java.util.HashMap<String, Object>();
+        claims.put("role", user.getRole().name());
+        if (user.getCliente() != null) {
+            claims.put("clienteId", user.getCliente().getId());
+        }
+        return buildToken(claims, user.getUsername());
     }
 
     public String extractUsername(String token) {

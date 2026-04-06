@@ -64,7 +64,7 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private Role role;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cliente_id")
     @JsonIgnore
     private Cliente cliente;

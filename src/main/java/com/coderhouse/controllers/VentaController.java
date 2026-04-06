@@ -27,9 +27,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Venta", description = "Manejo de Ventas")
-@RestController 
+@RestController
 @RequestMapping("/api/ventas")
-@PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
 public class VentaController {
 
     @Autowired
@@ -46,6 +45,7 @@ public class VentaController {
     		@ApiResponse(responseCode = "500", description = "Error interno del servidor",
 			content = @Content )
     })
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
     @GetMapping
     public ResponseEntity<List<Venta>> getAllVentas() {
         try {
@@ -67,6 +67,7 @@ public class VentaController {
     		@ApiResponse(responseCode = "500", description = "Error interno del servidor",
 			content = @Content )
     })
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
     @GetMapping("/{id}")
     public ResponseEntity <Venta> getVentaById(@PathVariable Long id) {
         try {
@@ -90,16 +91,16 @@ public class VentaController {
     		@ApiResponse(responseCode = "500", description = "Error interno del servidor",
 			content = @Content )
     })
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO','CLIENTE')")
     @PostMapping
-	public ResponseEntity <?> createVenta(@RequestBody VentaRequestDTO ventaRequestDTO) {
+	public ResponseEntity<?> createVenta(@RequestBody VentaRequestDTO ventaRequestDTO) {
 		try {
 			Venta venta = ventaService.createVenta(ventaRequestDTO);
-			return ResponseEntity.ok(venta);//ok se creo la venta
+			return ResponseEntity.ok(venta);
 		} catch (IllegalArgumentException e) {
-            return ResponseEntity.notFound().build();//404
-		}catch(Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno: "+ e.getMessage());
+            return ResponseEntity.notFound().build();
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno: " + e.getMessage());
 		}
 	}
 
@@ -114,6 +115,7 @@ public class VentaController {
     		@ApiResponse(responseCode = "500", description = "Error interno del servidor",
 			content = @Content )
     })
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteVenta(@PathVariable Long id) {
         try {
@@ -137,6 +139,7 @@ public class VentaController {
     		@ApiResponse(responseCode = "500", description = "Error interno del servidor",
 			content = @Content )
     })
+    @PreAuthorize("hasAnyRole('ADMINISTRADOR','EMPLEADO')")
     @PutMapping("/{id}")
     public ResponseEntity<Venta> updateVenta(@PathVariable Long id, @RequestBody Venta ventaDetails) {
         try {

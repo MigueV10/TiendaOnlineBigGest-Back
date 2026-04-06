@@ -33,19 +33,35 @@ public class AuthService {
         this.clienteRepository = clienteRepository;
     }
 
+    @org.springframework.transaction.annotation.Transactional
     public String register(String username, String password, Role role, String email, String nombre, Long clienteId) {
         if (userRepository.existsByUsername(username)) {
             throw new IllegalArgumentException("El usuario ya existe");
         }
-
+        if (userRepository.existsByEmail(email)) {
+            throw new IllegalArgumentException("El email ya está registrado");
+        }
         if (role != null && role != Role.CLIENTE) {
             throw new IllegalArgumentException("Solo se permite registro público de clientes");
         }
 
-        var cliente = clienteId != null
-                ? clienteRepository.findById(clienteId)
-                    .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado"))
-                : null;
+        // Si se provee clienteId explícito, usar ese; si no, crear Cliente automáticamente
+        com.coderhouse.models.Cliente cliente;
+        if (clienteId != null) {
+            cliente = clienteRepository.findById(clienteId)
+                    .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado con ID: " + clienteId));
+        } else {
+            // Auto-crear el perfil de cliente al momento del registro
+            String[] partes = (nombre != null ? nombre.trim() : username).split("\\s+", 2);
+            com.coderhouse.models.Cliente nuevo = new com.coderhouse.models.Cliente();
+            nuevo.setNombre(partes[0]);
+            nuevo.setApellido(partes.length > 1 ? partes[1] : "");
+            nuevo.setEmail(email);
+            nuevo.setIne(Math.abs(java.util.UUID.randomUUID().hashCode()));
+            nuevo.setNumCliente("C-" + username.toLowerCase());
+            nuevo.setPuntosTotales(0);
+            cliente = clienteRepository.save(nuevo);
+        }
 
         User user = User.builder()
                 .username(username)
